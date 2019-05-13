@@ -17,23 +17,23 @@ import id.web.twoh.twohfirebase.FirebaseDBCreateActivity;
 import id.web.twoh.twohfirebase.FirebaseDBReadActivity;
 import id.web.twoh.twohfirebase.FirebaseDBReadSingleActivity;
 import id.web.twoh.twohfirebase.R;
-import id.web.twoh.twohfirebase.model.Barang;
+import id.web.twoh.twohfirebase.model.Berita;
 
 /**
  * Created by Hafizh Herdi on 10/8/2017.
  */
 
-public class AdapterBarangRecyclerView extends RecyclerView.Adapter<AdapterBarangRecyclerView.ViewHolder> {
+public class AdapterBeritaRecyclerView extends RecyclerView.Adapter<AdapterBeritaRecyclerView.ViewHolder> {
 
-    private ArrayList<Barang> daftarBarang;
+    private ArrayList<Berita> daftarBerita;
     private Context context;
     FirebaseDataListener listener;
 
-    public AdapterBarangRecyclerView(ArrayList<Barang> barangs, Context ctx){
+    public AdapterBeritaRecyclerView(ArrayList<Berita> beritas, Context ctx){
         /**
          * Inisiasi data dan variabel yang akan digunakan
          */
-        daftarBarang = barangs;
+        daftarBerita = beritas;
         context = ctx;
         listener = (FirebaseDataListener) ctx;
     }
@@ -71,15 +71,15 @@ public class AdapterBarangRecyclerView extends RecyclerView.Adapter<AdapterBaran
         /**
          *  Menampilkan data pada view
          */
-        final String name = daftarBarang.get(position).getNama();
-        System.out.println("BARANG DATA one by one "+position+daftarBarang.size());
+        final String name = daftarBerita.get(position).getJudul();
+        System.out.println("BERITA DATA one by one "+position+daftarBerita.size());
         holder.cvMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 /**
                  *  Kodingan untuk tutorial Selanjutnya :p Read detail data
                  */
-                context.startActivity(FirebaseDBReadSingleActivity.getActIntent((Activity) context).putExtra("data", daftarBarang.get(position)));
+                context.startActivity(FirebaseDBReadSingleActivity.getActIntent((Activity) context).putExtra("data", daftarBerita.get(position)));
             }
         });
         holder.cvMain.setOnLongClickListener(new View.OnLongClickListener() {
@@ -102,7 +102,7 @@ public class AdapterBarangRecyclerView extends RecyclerView.Adapter<AdapterBaran
                             @Override
                             public void onClick(View view) {
                                 dialog.dismiss();
-                                context.startActivity(FirebaseDBCreateActivity.getActIntent((Activity) context).putExtra("data", daftarBarang.get(position)));
+                                context.startActivity(FirebaseDBCreateActivity.getActIntent((Activity) context).putExtra("data", daftarBerita.get(position)));
                             }
                         }
                 );
@@ -113,7 +113,7 @@ public class AdapterBarangRecyclerView extends RecyclerView.Adapter<AdapterBaran
                             @Override
                             public void onClick(View view) {
                                 dialog.dismiss();
-                                listener.onDeleteData(daftarBarang.get(position), position);
+                                listener.onDeleteData(daftarBerita.get(position), position);
                             }
                         }
                 );
@@ -128,10 +128,10 @@ public class AdapterBarangRecyclerView extends RecyclerView.Adapter<AdapterBaran
         /**
          * Mengembalikan jumlah item pada barang
          */
-        return daftarBarang.size();
+        return daftarBerita.size();
     }
 
     public interface FirebaseDataListener{
-        void onDeleteData(Barang barang, int position);
+        void onDeleteData(Berita Berita, int position);
     }
 }

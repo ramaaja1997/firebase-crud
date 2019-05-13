@@ -16,12 +16,7 @@ import android.widget.EditText;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import id.web.twoh.twohfirebase.model.Barang;
-
-/**
- * Created by Herdi_WORK on 08.08.17.
- */
+import id.web.twoh.twohfirebase.model.Berita;
 
 public class FirebaseDBCreateActivity extends AppCompatActivity {
 
@@ -29,10 +24,11 @@ public class FirebaseDBCreateActivity extends AppCompatActivity {
     private DatabaseReference database;
 
     // variable fields EditText dan Button
-    private Button btSubmit;
-    private EditText etNama;
-    private EditText etMerk;
-    private EditText etHarga;
+    private Button btSubmitBerita;
+    private EditText etJudul;
+    private EditText etPenulis;
+    private EditText etTanggal;
+    private EditText etIsi;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,43 +36,46 @@ public class FirebaseDBCreateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_db_create);
 
         // inisialisasi fields EditText dan Button
-        etNama = (EditText) findViewById(R.id.et_namabarang);
-        etMerk = (EditText) findViewById(R.id.et_merkbarang);
-        etHarga = (EditText) findViewById(R.id.et_hargabarang);
-        btSubmit = (Button) findViewById(R.id.bt_submit);
+        etJudul= (EditText) findViewById(R.id.et_judulberita);
+        etPenulis = (EditText) findViewById(R.id.et_namapenulis);
+        etTanggal = (EditText) findViewById(R.id.et_tanggalberita);
+        etIsi = (EditText) findViewById(R.id.et_isiberita);
+        btSubmitBerita = (Button) findViewById(R.id.bt_submitberita);
 
         // mengambil referensi ke Firebase Database
         database = FirebaseDatabase.getInstance().getReference();
 
-        final Barang barang = (Barang) getIntent().getSerializableExtra("data");
+        final Berita berita = (Berita) getIntent().getSerializableExtra("data");
 
-        if (barang != null) {
-            etNama.setText(barang.getNama());
-            etMerk.setText(barang.getMerk());
-            etHarga.setText(barang.getHarga());
-            btSubmit.setOnClickListener(new View.OnClickListener() {
+        if (berita != null) {
+            etJudul.setText(berita.getJudul());
+            etPenulis.setText(berita.getPenulis());
+            etTanggal.setText(berita.getTanggal());
+            etIsi.setText(berita.getIsi());
+            btSubmitBerita.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    barang.setNama(etNama.getText().toString());
-                    barang.setMerk(etMerk.getText().toString());
-                    barang.setHarga(etHarga.getText().toString());
+                    berita.setJudul(etJudul.getText().toString());
+                    berita.setPenulis(etPenulis.getText().toString());
+                    berita.setTanggal(etTanggal.getText().toString());
+                    berita.setIsi(etIsi.getText().toString());
 
-                    updateBarang(barang);
+                    updateBerita(berita);
                 }
             });
         } else {
-            btSubmit.setOnClickListener(new View.OnClickListener() {
+            btSubmitBerita.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(!isEmpty(etNama.getText().toString()) && !isEmpty(etMerk.getText().toString()) && !isEmpty(etHarga.getText().toString()))
-                        submitBarang(new Barang(etNama.getText().toString(), etMerk.getText().toString(), etHarga.getText().toString()));
+                    if(!isEmpty(etJudul.getText().toString()) && !isEmpty(etPenulis.getText().toString()) && !isEmpty(etTanggal.getText().toString()) && !isEmpty(etIsi.getText().toString()))
+                        submitBerita(new Berita(etJudul.getText().toString(), etPenulis.getText().toString(), etTanggal.getText().toString(), etIsi.getText().toString()));
                     else
-                        Snackbar.make(findViewById(R.id.bt_submit), "Data barang tidak boleh kosong", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(findViewById(R.id.bt_submitberita), "Berita berita tidak boleh kosong", Snackbar.LENGTH_LONG).show();
 
                     InputMethodManager imm = (InputMethodManager)
-                    getSystemService(Context.INPUT_METHOD_SERVICE);
+                            getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(
-                            etNama.getWindowToken(), 0);
+                            etJudul.getWindowToken(), 0);
                 }
             });
         }
@@ -87,14 +86,14 @@ public class FirebaseDBCreateActivity extends AppCompatActivity {
         return TextUtils.isEmpty(s);
     }
 
-    private void updateBarang(Barang barang) {
+    private void updateBerita(Berita berita) {
         /**
          * Baris kode yang digunakan untuk mengupdate data barang
          * yang sudah dimasukkan di Firebase Realtime Database
          */
-        database.child("barang") //akses parent index, ibaratnya seperti nama tabel
-                .child(barang.getKey()) //select barang berdasarkan key
-                .setValue(barang) //set value barang yang baru
+        database.child("berita") //akses parent index, ibaratnya seperti nama tabel
+                .child(berita.getKey()) //select barang berdasarkan key
+                .setValue(berita) //set value barang yang baru
                 .addOnSuccessListener(this, new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -102,7 +101,7 @@ public class FirebaseDBCreateActivity extends AppCompatActivity {
                         /**
                          * Baris kode yang akan dipanggil apabila proses update barang sukses
                          */
-                        Snackbar.make(findViewById(R.id.bt_submit), "Data berhasil diupdatekan", Snackbar.LENGTH_LONG).setAction("Oke", new View.OnClickListener() {
+                        Snackbar.make(findViewById(R.id.bt_submitberita), "Data berhasil diupdatekan", Snackbar.LENGTH_LONG).setAction("Oke", new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 finish();
@@ -112,19 +111,20 @@ public class FirebaseDBCreateActivity extends AppCompatActivity {
                 });
     }
 
-    private void submitBarang(Barang barang) {
+    private void submitBerita(Berita berita) {
         /**
          * Ini adalah kode yang digunakan untuk mengirimkan data ke Firebase Realtime Database
          * dan juga kita set onSuccessListener yang berisi kode yang akan dijalankan
          * ketika data berhasil ditambahkan
          */
-        database.child("barang").push().setValue(barang).addOnSuccessListener(this, new OnSuccessListener<Void>() {
+        database.child("berita").push().setValue(berita).addOnSuccessListener(this, new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                etNama.setText("");
-                etMerk.setText("");
-                etHarga.setText("");
-                Snackbar.make(findViewById(R.id.bt_submit), "Data berhasil ditambahkan", Snackbar.LENGTH_LONG).show();
+                etJudul.setText("");
+                etPenulis.setText("");
+                etTanggal.setText("");
+                etIsi.setText("");
+                Snackbar.make(findViewById(R.id.bt_submitberita), "Berita berhasil ditambahkan", Snackbar.LENGTH_LONG).show();
             }
         });
     }

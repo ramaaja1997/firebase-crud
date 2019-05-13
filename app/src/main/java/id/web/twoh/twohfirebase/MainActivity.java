@@ -11,6 +11,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btAnalytics;
     private Button btAuth;
     private Button btFBDatabase;
+    private Button btFBDatabase2;
     private Button btAdmob;
 
     @Override
@@ -41,6 +42,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity( new Intent(MainActivity.this, FirebaseDBActivity.class));
             }
         });
+
+//        btFBDatabase2 = findViewById(R.id.bt_fbdatabase2);
+//        btFBDatabase2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity( new Intent(MainActivity.this, KelolaPaketActivity.class));
+//            }
+//        });
 
         btAdmob = findViewById(R.id.bt_fbadmob);
         btAdmob.setOnClickListener(new View.OnClickListener() {

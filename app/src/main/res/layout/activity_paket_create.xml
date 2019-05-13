@@ -27,21 +27,20 @@
             android:orientation="vertical"
             android:padding="10dp">
             <TextView
-                android:textAppearance="@android:style/TextAppearance.Material.Medium"
                 android:layout_margin="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tambah Berita"/>
+                android:text="Tambah Paket"/>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/et_judulberita"
+                    android:id="@+id/et_nama"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Judul Berita"
+                    android:hint="Nama Paket"
                     android:inputType="text" />
             </android.support.design.widget.TextInputLayout>
 
@@ -50,10 +49,10 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/et_namapenulis"
+                    android:id="@+id/et_kapasitas"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Nama Penulis"
+                    android:hint="Kapasitas"
                     android:inputType="text" />
             </android.support.design.widget.TextInputLayout>
 
@@ -62,11 +61,11 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/et_tanggalberita"
+                    android:id="@+id/et_rating"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Tanggal Berita"
-                    android:inputType="datetime" />
+                    android:hint="Rating"
+                    android:inputType="text" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -74,15 +73,27 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/et_isiberita"
+                    android:id="@+id/et_slot"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Isi Berita"
+                    android:hint="Slot"
+                    android:inputType="text" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/et_harga"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Harga"
                     android:inputType="text" />
             </android.support.design.widget.TextInputLayout>
 
             <Button
-                android:id="@+id/bt_submitberita"
+                android:id="@+id/bt_submitpaket"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="KIRIM" />

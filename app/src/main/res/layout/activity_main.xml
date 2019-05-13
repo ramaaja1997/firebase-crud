@@ -29,7 +29,28 @@
 
     <Button
         android:id="@+id/bt_fbdatabase"
-        android:text="Database"
+        android:text="Database Berita"
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/bt_fbdatabase2"
+        android:text="Database Paket"
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/bt_fbdatabase3"
+        android:text="Database User"
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/bt_fbdatabase4"
+        android:text="Database Reservasi"
         android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

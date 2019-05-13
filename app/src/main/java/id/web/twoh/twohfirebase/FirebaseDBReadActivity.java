@@ -1,31 +1,31 @@
-package id.web.twoh.twohfirebase;
+ package id.web.twoh.twohfirebase;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
+        import android.app.Activity;
+        import android.content.Intent;
+        import android.os.Bundle;
+        import android.support.annotation.Nullable;
+        import android.support.v7.app.AppCompatActivity;
+        import android.support.v7.widget.LinearLayoutManager;
+        import android.support.v7.widget.RecyclerView;
+        import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+        import com.google.android.gms.tasks.OnSuccessListener;
+        import com.google.firebase.database.DataSnapshot;
+        import com.google.firebase.database.DatabaseError;
+        import com.google.firebase.database.DatabaseReference;
+        import com.google.firebase.database.FirebaseDatabase;
+        import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
+        import java.util.ArrayList;
 
-import id.web.twoh.twohfirebase.adapter.AdapterBarangRecyclerView;
-import id.web.twoh.twohfirebase.model.Barang;
+        import id.web.twoh.twohfirebase.adapter.AdapterBeritaRecyclerView;
+        import id.web.twoh.twohfirebase.model.Berita;
 
 /**
  * Created by Herdi_WORK on 18.06.17.
  */
 
-public class FirebaseDBReadActivity extends AppCompatActivity implements AdapterBarangRecyclerView.FirebaseDataListener {
+public class FirebaseDBReadActivity extends AppCompatActivity implements AdapterBeritaRecyclerView.FirebaseDataListener {
 
     /**
      * Mendefinisikan variable yang akan dipakai
@@ -34,7 +34,7 @@ public class FirebaseDBReadActivity extends AppCompatActivity implements Adapter
     private RecyclerView rvView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<Barang> daftarBarang;
+    private ArrayList<Berita> daftarBerita;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,35 +60,35 @@ public class FirebaseDBReadActivity extends AppCompatActivity implements Adapter
         /**
          * Mengambil data barang dari Firebase Realtime DB
          */
-        database.child("barang").addValueEventListener(new ValueEventListener() {
+        database.child("berita").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 /**
                  * Saat ada data baru, masukkan datanya ke ArrayList
                  */
-                daftarBarang = new ArrayList<>();
+                daftarBerita = new ArrayList<>();
                 for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
                     /**
                      * Mapping data pada DataSnapshot ke dalam object Barang
                      * Dan juga menyimpan primary key pada object Barang
                      * untuk keperluan Edit dan Delete data
                      */
-                    Barang barang = noteDataSnapshot.getValue(Barang.class);
-                    barang.setKey(noteDataSnapshot.getKey());
+                    Berita berita = noteDataSnapshot.getValue(Berita.class);
+                    berita.setKey(noteDataSnapshot.getKey());
 
                     /**
                      * Menambahkan object Barang yang sudah dimapping
                      * ke dalam ArrayList
                      */
-                    daftarBarang.add(barang);
+                    daftarBerita.add(berita);
                 }
 
                 /**
                  * Inisialisasi adapter dan data barang dalam bentuk ArrayList
                  * dan mengeset Adapter ke dalam RecyclerView
                  */
-                adapter = new AdapterBarangRecyclerView(daftarBarang, FirebaseDBReadActivity.this);
+                adapter = new AdapterBeritaRecyclerView(daftarBerita, FirebaseDBReadActivity.this);
                 rvView.setAdapter(adapter);
             }
 
@@ -109,7 +109,7 @@ public class FirebaseDBReadActivity extends AppCompatActivity implements Adapter
     }
 
     @Override
-    public void onDeleteData(Barang barang, final int position) {
+    public void onDeleteData(Berita berita, final int position) {
         /**
          * Kode ini akan dipanggil ketika method onDeleteData
          * dipanggil dari adapter lewat interface.
@@ -118,7 +118,7 @@ public class FirebaseDBReadActivity extends AppCompatActivity implements Adapter
          * Jika sukses akan memunculkan SnackBar
          */
         if(database!=null){
-            database.child("barang").child(barang.getKey()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+            database.child("berita").child(berita.getKey()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
                     Toast.makeText(FirebaseDBReadActivity.this,"success delete", Toast.LENGTH_LONG).show();

@@ -23,6 +23,7 @@ public class FirebaseDBActivity extends AppCompatActivity {
         btCreateDB = (Button) findViewById(R.id.bt_createdata);
         btViewDB = (Button) findViewById(R.id.bt_viewdata);
 
+
         btCreateDB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

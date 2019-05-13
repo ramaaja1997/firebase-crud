@@ -33,6 +33,10 @@
         <activity android:name=".FirebaseAdMobInterstitialActivity"/>
         <activity android:name=".FirebaseAdMobNativeActivity"/>
         <activity android:name=".FirebaseAdMobVideoActivity"/>
+        <activity android:name=".KelolaPaketActivity"/>
+        <activity android:name=".PaketReadActivity"/>
+        <activity android:name=".PaketCreateActivity"/>
+        <activity android:name=".PaketReadSingleActivity"/>
 
     </application>
 

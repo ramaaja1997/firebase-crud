@@ -10,37 +10,38 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import id.web.twoh.twohfirebase.model.Barang;
-
-/**
- * Created by Hafizh Herdi on 10/15/2017.
- */
+import id.web.twoh.twohfirebase.model.Berita;
 
 public class FirebaseDBReadSingleActivity extends AppCompatActivity {
 
-    private Button btSubmit;
-    private EditText etNama;
-    private EditText etMerk;
-    private EditText etHarga;
+    private Button btSubmitBerita;
+    private EditText etJudul;
+    private EditText etPenulis;
+    private EditText etTanggal;
+    private EditText etIsi;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_db_create);
-        etNama = (EditText) findViewById(R.id.et_namabarang);
-        etMerk = (EditText) findViewById(R.id.et_merkbarang);
-        etHarga = (EditText) findViewById(R.id.et_hargabarang);
-        btSubmit = (Button) findViewById(R.id.bt_submit);
+        etJudul = (EditText) findViewById(R.id.et_judulberita);
+        etPenulis = (EditText) findViewById(R.id.et_namapenulis);
+        etTanggal = (EditText) findViewById(R.id.et_tanggalberita);
+        etIsi = (EditText) findViewById(R.id.et_isiberita);
+        btSubmitBerita = (Button) findViewById(R.id.bt_submitberita);
 
-        etNama.setEnabled(false);
-        etMerk.setEnabled(false);
-        etHarga.setEnabled(false);
-        btSubmit.setVisibility(View.GONE);
+        etJudul.setEnabled(false);
+        etPenulis.setEnabled(false);
+        etTanggal.setEnabled(false);
+        etIsi.setEnabled(false);
+        btSubmitBerita.setVisibility(View.GONE);
 
-        Barang barang = (Barang) getIntent().getSerializableExtra("data");
-        if(barang!=null){
-            etNama.setText(barang.getNama());
-            etMerk.setText(barang.getMerk());
-            etHarga.setText(barang.getHarga());
+        Berita berita = (Berita) getIntent().getSerializableExtra("data");
+        if(berita!=null){
+            etJudul.setText(berita.getJudul());
+            etPenulis.setText(berita.getPenulis());
+            etTanggal.setText(berita.getTanggal());
+            etIsi.setText(berita.getIsi());
         }
     }
 
