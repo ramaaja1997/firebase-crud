@@ -12,20 +12,14 @@ public class MainActivity extends AppCompatActivity {
     private Button btAuth;
     private Button btFBDatabase;
     private Button btFBDatabase2;
+    private Button btFBDatabase3;
+    private Button btFBDatabase4;
     private Button btAdmob;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        btAnalytics = findViewById(R.id.bt_fbanalytics);
-        btAnalytics.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity( new Intent(MainActivity.this, FirebaseAnalyticsActivity.class));
-            }
-        });
 
         btAuth = findViewById(R.id.bt_fbauth);
         btAuth.setOnClickListener(new View.OnClickListener() {
@@ -43,20 +37,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        btFBDatabase2 = findViewById(R.id.bt_fbdatabase2);
-//        btFBDatabase2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity( new Intent(MainActivity.this, KelolaPaketActivity.class));
-//            }
-//        });
-
-        btAdmob = findViewById(R.id.bt_fbadmob);
-        btAdmob.setOnClickListener(new View.OnClickListener() {
+        btFBDatabase2 = findViewById(R.id.bt_fbdatabase2);
+        btFBDatabase2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity( new Intent(MainActivity.this, FirebaseAdMobActivity.class));
+                startActivity( new Intent(MainActivity.this, KelolaPaketActivity.class));
             }
         });
+
     }
 }

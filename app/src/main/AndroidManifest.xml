@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="id.web.twoh.twohfirebase">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,33 +11,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivityAdmin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--Include the AdActivity configChanges and theme. -->
-        <activity android:name="com.google.android.gms.ads.AdActivity"
+        <!-- Include the AdActivity configChanges and theme. -->
+        <activity
+            android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:theme="@android:style/Theme.Translucent" />
-        <activity android:name=".FirebaseAnalyticsActivity"/>
-        <activity android:name=".FirebaseAuthActivity"/>
-        <activity android:name=".FirebaseDBActivity"/>
-        <activity android:name=".FirebaseDBCreateActivity"/>
-        <activity android:name=".FirebaseDBReadActivity"/>
-        <activity android:name=".FirebaseDBReadSingleActivity"/>
-        <activity android:name=".FirebaseAdMobActivity"/>
-        <activity android:name=".FirebaseAdMobBannerActivity"/>
-        <activity android:name=".FirebaseAdMobInterstitialActivity"/>
-        <activity android:name=".FirebaseAdMobNativeActivity"/>
-        <activity android:name=".FirebaseAdMobVideoActivity"/>
-        <activity android:name=".KelolaPaketActivity"/>
-        <activity android:name=".PaketReadActivity"/>
-        <activity android:name=".PaketCreateActivity"/>
-        <activity android:name=".PaketReadSingleActivity"/>
-
+        <activity android:name=".FirebaseAuthActivity" />
+        <activity android:name=".FirebaseDBActivity" />
+        <activity android:name=".FirebaseDBCreateActivity" />
+        <activity android:name=".FirebaseDBReadActivity" />
+        <activity android:name=".FirebaseDBReadSingleActivity" />
+        <activity android:name=".KelolaPaketActivity" />
+        <activity android:name=".PaketReadActivity" />
+        <activity android:name=".PaketCreateActivity" />
+        <activity android:name=".PaketReadSingleActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".PayPaketActivity" />
+        <activity android:name=".SelesaiActivity"></activity>
     </application>
 
 </manifest>

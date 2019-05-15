@@ -46,11 +46,13 @@ public class AdapterBeritaRecyclerView extends RecyclerView.Adapter<AdapterBerit
          * dan juga view nya hanyalah satu TextView
          */
         TextView tvTitle;
+        TextView tvSubTitle;
         CardView cvMain;
 
         ViewHolder(View v) {
             super(v);
             tvTitle = (TextView) v.findViewById(R.id.tv_nama);
+            tvSubTitle = (TextView) v.findViewById(R.id.tv_tanggal);
             cvMain = (CardView) v.findViewById(R.id.cv_main);
         }
     }
@@ -72,6 +74,7 @@ public class AdapterBeritaRecyclerView extends RecyclerView.Adapter<AdapterBerit
          *  Menampilkan data pada view
          */
         final String name = daftarBerita.get(position).getJudul();
+        final String date = daftarBerita.get(position).getTanggal();
         System.out.println("BERITA DATA one by one "+position+daftarBerita.size());
         holder.cvMain.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,6 +124,7 @@ public class AdapterBeritaRecyclerView extends RecyclerView.Adapter<AdapterBerit
             }
         });
         holder.tvTitle.setText(name);
+        holder.tvSubTitle.setText(date);
     }
 
     @Override

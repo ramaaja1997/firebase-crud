@@ -12,6 +12,7 @@ import android.widget.EditText;
 import id.web.twoh.twohfirebase.model.Barang;
 import id.web.twoh.twohfirebase.model.Berita;
 
+
 public class FirebaseDBReadSingleActivity extends AppCompatActivity {
 
     private Button btSubmitBerita;
