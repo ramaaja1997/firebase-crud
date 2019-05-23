@@ -34,7 +34,7 @@
         <activity android:name=".PaketReadSingleActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".PayPaketActivity" />
-        <activity android:name=".SelesaiActivity"></activity>
+        <activity android:name=".SelesaiActivity" />
     </application>
 
 </manifest>

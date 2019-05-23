@@ -13,7 +13,7 @@ import android.widget.TextView;
 public class PayPaketActivity extends AppCompatActivity {
 
     private Button konfirmasi, subpocer, kenselpocer;
-    private TextView quant, jumlahbay, subtotal, initotal,  inibank, nama;
+    private TextView quant, jumlahbay, subtotal, initotal,  inibank;
     private CheckBox tfcek;
     private EditText pocer,pocerfix;
 
